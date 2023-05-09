@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 
-function HomePage() {
+function Home() {
   return (
     <div>
       <Navbar />
@@ -53,7 +53,7 @@ function HomePage() {
       <footer className="bg-gray-800">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <p className="text-center text-gray-400">
-            &copy; 2023 Stark-. All rights reserved.
+            &copy; 2023 Stark-AI. All rights reserved.
           </p>
         </div>
       </footer>
@@ -61,4 +61,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;

@@ -1,16 +1,16 @@
-import React from 'react'
-import SignIn from './auth/SignIn';
-import SignUp from './auth/SignUp';
-import AuthDetails from './AuthDetails';
+import React from "react";
+import SignIn from "./auth/Login";
+import SignUp from "./auth/SignUp";
+import AuthDetails from "./AuthDetails";
 
 const Login = () => {
   return (
     <div>
-        <SignIn />
-        <SignUp />       
-        <AuthDetails /> 
+      {/* <SignIn /> */}
+      <SignUp />
+      <AuthDetails />
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

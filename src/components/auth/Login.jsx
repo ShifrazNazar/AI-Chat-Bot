@@ -1,77 +1,72 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Login = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmit = async (e) => {
+  const onLogin = (e) => {
     e.preventDefault();
-
-    await createUserWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        navigate("/");
         console.log(user);
-        navigate("/login");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
       });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="max-w-md w-full py-12 px-6">
-        <h1 className="text-3xl font-bold text-white mb-4">Welcom Back!</h1>
+        <h1 className="text-4xl font-extrabold text-white tracking-tight mb-4">
+            Welcome Back!
+        </h1>
         <form>
           <div>
             <input
+              name="email"
               type="email"
-              label="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="Email address"
+              placeholder="Enter your email"
               className="block w-full mt-1 px-4 py-3 rounded-md bg-gray-800 border-transparent focus:border-gray-500 focus:bg-gray-900 focus:ring-0 text-white"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
           <div className="mt-4">
             <input
+              name="password"
               type="password"
-              label="Create password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="Password"
+              placeholder="Enter your password"
               className="block w-full mt-1 px-4 py-3 rounded-md bg-gray-800 border-transparent focus:border-gray-500 focus:bg-gray-900 focus:ring-0 text-white"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           <div className="mt-8">
             <button
-              type="submit"
-              onClick={onSubmit}
-              className="w-full px-4 py-2 rounded-md text-white bg-gray-600 hover:bg-gray-500 focus:outline-none focus:bg-gray-500"
+              onClick={onLogin}
+              className="w-full px-4 py-3 rounded-md bg-gray-600 hover:bg-gray-500 focus:outline-none focus:bg-gray-500"
             >
-              Sign up
+              Log In
             </button>
           </div>
         </form>
 
         <p className="mt-8 text-sm text-gray-400 text-center">
-          Already have an account?{" "}
-          <NavLink to="/login" className="text-gray-500 hover:text-gray-300">
-            Sign in
+          Don't have an account yet?{" "}
+          <NavLink to="/signup" className="text-gray-500 hover:text-gray-300">
+            Sign up
           </NavLink>
         </p>
       </div>
@@ -79,4 +74,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

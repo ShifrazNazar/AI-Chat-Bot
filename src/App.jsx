@@ -4,11 +4,11 @@ import About from "./components/About";
 import Products from "./components/Products";
 import MarketPlace from "./components/MarketPlace";
 import ContactUs from "./components/ContactUs";
-import Login from "./components/Login";
+import Login from "./components/auth/Login";
+import SignUp from "./components/auth/SignUp";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -18,6 +18,7 @@ function App() {
       <Route path="/marketplace" element={<MarketPlace />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
     </Routes>
   );
 }
