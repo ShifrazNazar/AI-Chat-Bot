@@ -29,7 +29,7 @@ function Navbar() {
   };
 
   const renderAuthButtons = () => {
-    if (authUser) {
+    if (authUser && authUser.email) {
       const avatarText = authUser.email.charAt(0).toUpperCase();
       return (
         <div className="flex items-center">
@@ -61,6 +61,7 @@ function Navbar() {
       );
     }
   };
+  
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -129,9 +130,9 @@ function Navbar() {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>

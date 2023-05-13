@@ -1,12 +1,37 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { auth } from "../../firebase";
+import { auth, googleProvider, facebookProvider } from "../../firebase";
+import { signInWithPopup } from "firebase/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onFacebookSignIn = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -28,7 +53,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="max-w-md w-full py-12 px-6">
         <h1 className="text-4xl font-extrabold text-white tracking-tight mb-4">
-            Welcome Back!
+          Welcome Back!
         </h1>
         <form>
           <div>
@@ -63,12 +88,24 @@ const Login = () => {
           </div>
         </form>
 
-        <p className="mt-8 text-sm text-gray-400 text-center">
+        <p className="m-8 text-sm text-gray-400 text-center">
           Don't have an account yet?{" "}
           <NavLink to="/signup" className="text-gray-500 hover:text-gray-300">
             Sign up
           </NavLink>
         </p>
+        <button
+          onClick={onGoogleSignIn}
+          className="w-full px-4 py-2 rounded-md text-white bg-gray-700 hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+        >
+          Sign in with Google
+        </button>
+        {/* <button
+          onClick={onFacebookSignIn}
+          className="w-full px-4 py-2 rounded-md text-white bg-gray-700 hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+        >
+          Sign in with Facebook
+        </button> */}
       </div>
     </div>
   );
