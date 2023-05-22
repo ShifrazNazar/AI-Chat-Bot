@@ -6,13 +6,29 @@ import MarketPlace from "./components/MarketPlace";
 import ContactUs from "./components/ContactUs";
 import Login from "./components/auth/Login";
 import SignUp from "./components/auth/SignUp";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+
+function PrivateRoute({ children }) {
+  const [user, loading] = useAuthState(auth);
+
+  if (loading) {
+    return null; // or some loading spinner
+  }
+
+  return user ? children : <Navigate to="/login" replace />;
+}
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/chatbot" element={<ChatApp />} />
+      <Route path="/chatbot" element={
+        <PrivateRoute>
+          <ChatApp />
+        </PrivateRoute>
+      } />
       <Route path="/about" element={<About />} />
       <Route path="/products" element={<Products />} />
       <Route path="/marketplace" element={<MarketPlace />} />

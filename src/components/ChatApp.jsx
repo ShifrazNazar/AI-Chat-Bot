@@ -64,7 +64,6 @@ const ChatApp = () => {
 
   const handleChatClick = (chat) => {
     setMessages(chat.messages);
-    
   };
 
   return (
@@ -139,4 +138,3 @@ const ChatApp = () => {
 };
 
 export default ChatApp;
-
