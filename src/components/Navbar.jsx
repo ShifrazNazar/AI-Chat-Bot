@@ -151,18 +151,7 @@ function Navbar() {
           >
             About
           </Link>
-          <Link
-            to="/products"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white"
-          >
-            Products
-          </Link>
-          <Link
-            to="/marketplace"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white"
-          >
-            Market Place
-          </Link>
+    
           <Link
             to="/chatbot"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white"
