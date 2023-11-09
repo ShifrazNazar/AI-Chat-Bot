@@ -96,18 +96,7 @@ function Navbar() {
               >
                 About
               </Link>
-              <Link
-                to="/products"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white"
-              >
-                Products
-              </Link>
-              <Link
-                to="/marketplace"
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white"
-              >
-                Market Place
-              </Link>
+            
               <Link
                 to="/chatbot"
                 className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white"

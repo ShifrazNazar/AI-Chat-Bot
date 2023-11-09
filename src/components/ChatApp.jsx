@@ -12,7 +12,6 @@ const ChatApp = () => {
 
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [savedChats, setSavedChats] = useState([]);
 
   useEffect(() => {
     // Fetch chat history on component mount
@@ -49,51 +48,20 @@ const ChatApp = () => {
     setInput("");
   };
 
-  const saveChatHistory = async () => {
-    try {
-      await addDoc(collection(db, "chatHistory"), { messages });
-    } catch (error) {
-      console.error("Error saving chat history:", error);
-    }
-  };
 
   const fetchChatHistory = async () => {
     const querySnapshot = await getDocs(collection(db, "chatHistory"));
     setSavedChats(querySnapshot.docs.map((doc) => doc.data()));
   };
 
-  const handleChatClick = (chat) => {
-    setMessages(chat.messages);
-  };
+
 
   return (
     <div className="bg-gray-900 h-screen">
       <Navbar />
-      <div className="p-8 flex">
-        <div className="w-1/3 pr-4 overflow-y-auto h-screen">
-          <h2 className="text-2xl text-gray-100 mb-4">Saved Chats</h2>
-          {savedChats.map((chat, index) => (
-            <div
-              key={index}
-              className="bg-gray-700 text-gray-300 p-4 rounded-md mb-4 overflow-y-auto h-40"
-              onClick={() => handleChatClick(chat)}
-            >
-              {chat.messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`px-4 py-2 rounded-md ${
-                    message.isUser
-                      ? "bg-blue-600 text-gray-100"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
-                >
-                  {message.text}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="w-2/3">
+        
+      <div className="px-20 ">
+
           <h1 className="text-4xl text-gray-100 text-center mt-4">
             Chat with AI
           </h1>
@@ -124,16 +92,10 @@ const ChatApp = () => {
             >
               Submit
             </button>
-            <button
-              onClick={saveChatHistory}
-              className="bg-green-600 text-gray-100 px-4 py-2 rounded-md mt-4 ml-4"
-            >
-              Save Chat
-            </button>
+    
           </form>
         </div>
       </div>
-    </div>
   );
 };
 
